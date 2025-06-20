@@ -6,10 +6,10 @@ import java.util.Set;
 public class Board {
 
     private final Field[][] field;
-    private int height;
-    private int width;
-    private Collection<Field> conditions;
-    private Set<Color> conditionsColors;
+    private final int height;
+    private final int width;
+    private final Collection<Field> conditions;
+    private final Set<Color> conditionsColors;
 
     public Board(int width, int height) {
         this.field = new Field[width][height];
@@ -123,19 +123,26 @@ public class Board {
         return conditionsColors;
     }
 
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_YELLOW = "\u001B[33m";
+    public static final String ANSI_BLUE = "\u001B[34m";
+
     private static String colorToString(Color color) {
+
         switch (color) {
             case RED -> {
-                return "RO";
+                return ANSI_RED + "RO" + ANSI_RESET;
             }
             case BLUE -> {
-                return "BL";
+                return ANSI_BLUE + "BL" + ANSI_RESET;
             }
             case GREEN -> {
-                return "GR";
+                return ANSI_GREEN + "GR" + ANSI_RESET;
             }
             case YELLOW -> {
-                return "GE";
+                return ANSI_YELLOW + "GE" + ANSI_RESET;
             }
             case NONE -> {
                 return "--";
