@@ -1,7 +1,7 @@
 public enum Color {
 
-    RED,
+    RED(),
     GREEN,
     BLUE,
-    NONE
+    NONE;
 }

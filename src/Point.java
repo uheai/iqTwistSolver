@@ -2,8 +2,8 @@ import java.util.Objects;
 
 public class Point {
 
-    private final int x;
-    private final int y;
+    public final int x;
+    public final int y;
 
     public Point(int x, int y) {
         this.x = x;
@@ -23,6 +23,14 @@ public class Point {
         return new Point(-y,x);
     }
 
+    public Point mirrorX() {
+        return new Point(x, -y);
+    }
+
+    public Point mirrorY() {
+        return new Point(-x, y);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (!(o instanceof Point point)) return false;
@@ -32,5 +40,14 @@ public class Point {
     @Override
     public int hashCode() {
         return Objects.hash(x, y);
+    }
+
+    @Override
+    public String toString() {
+        return "(" + x + "," + y + ")";
+    }
+
+    public boolean isWithinBounds(int width, int heigth) {
+       return this.x >= 0 && x < width && y >=0 && y < heigth;
     }
 }
