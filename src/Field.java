@@ -1,6 +1,6 @@
 public class Field {
 
-    private Point point;
+    private final Point point;
     private Color color;
     private Color condition;
 
@@ -31,5 +31,9 @@ public class Field {
 
     public Color getColor() {
         return color;
+    }
+
+    public void reset() {
+        this.color = Color.NONE;
     }
 }

@@ -23,8 +23,7 @@ public class Board {
         field[x][y].setColor(color);
     }
 
-    public boolean isPlacable(Tile tile, Point base) {
-        Tile concrete = tile.makeConcrete(base);
+    public boolean isPlacable(Tile tile) {
 
         for (Point point : tile.getPoints()) {
             if (!point.isWithinBounds(width, height)) {
@@ -50,12 +49,29 @@ public class Board {
         Collection<Tile> variations = tile.getAllVariations();
         Collection<Tile> result = new HashSet<>();
         for (Tile varation : variations) {
-            if (isPlacable(varation, base)) {
-                result.add(varation.makeConcrete(base));
+            Tile concrete = varation.makeConcrete(base);
+            if (isPlacable(concrete)) {
+                result.add(concrete);
             }
         }
 
         return result;
+    }
+
+    /**
+     * Platziere konkretes Tile
+     * @param tile
+     */
+    public void place(Tile tile) {
+        for (Point p : tile.getPoints()) {
+            field[p.x][p.y].setColor(tile.getColor());
+        }
+    }
+
+    public void unplace(Tile tile) {
+        for (Point p : tile.getPoints()) {
+            field[p.x][p.y].reset();
+        }
     }
 
 
