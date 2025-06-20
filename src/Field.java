@@ -18,7 +18,17 @@ public class Field {
     }
 
     public boolean isAllowed(Color color) {
-        return (condition == Color.NONE || condition == color) && /*noch kein anderes Teil*/ this.color == Color.NONE;
+        //Prüfe, ob Farbe Bedingung einhält (falls vorhanden) und der Punkt offen ist
+        if (condition != Color.NONE && condition != color && !point.isOpen()) {
+            return false;
+        }
+
+        //Legen nur erlaubt, falls noch kein anderes Teil hier liegt
+        if (this.color == Color.NONE) {
+            return false;
+        }
+
+        return true;
     }
 
     public void setCondition(Color color) {

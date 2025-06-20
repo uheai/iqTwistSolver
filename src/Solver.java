@@ -77,7 +77,12 @@ public class Solver {
             board.place(placeableTile);
             if (remainingTiles.isEmpty()) {
                 //letztes Teil platziert --> Lösung  gefunden
+                if (checkConditions()) {
                 return true;
+                } else {
+                    board.unplace(placeableTile);
+                    continue;
+                }
             }
             boolean solutionFound = solveRecursive(remainingTiles);
             if (solutionFound) {
@@ -91,5 +96,16 @@ public class Solver {
         remainingTiles.push(nextTile);
 
         return false;
+    }
+
+    private boolean checkConditions() {
+        Collection<Field> conditions = board.getConditions();
+        for (Field field : conditions) {
+            if (field.getCondition() != field.getColor()) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }

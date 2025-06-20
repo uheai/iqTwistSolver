@@ -45,9 +45,6 @@ public class Board {
                 return false;
             }
 
-            if (!point.isOpen()) {
-                return false;
-            }
         }
 
         return true;

@@ -30,6 +30,9 @@ public class Tile {
             ref = ref.rotate();
             variations.add(ref);
         }
+
+        //TODO: Koordinaten müssen nach Spiegelung noch verschoben werden bzw. Spiegelung um Mittelpunkt des Teils nicht Achse
+
         //Berechne alle Spiegelungen an der X-Achse
         Collection<Tile> mirrorX = variations.stream().map(Tile::mirrorX).collect(Collectors.toSet());
         //Berechne alle Spiegelungen an der Y-Achse

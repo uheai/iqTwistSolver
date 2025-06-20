@@ -26,4 +26,11 @@ public class Level {
 
         return board;
     }
+
+    public static Board levelDummy() {
+        Board board = makeBoard();
+        board.addCondition(0,0, Color.BLUE);
+
+        return board;
+    }
 }

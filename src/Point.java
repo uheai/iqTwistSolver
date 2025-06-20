@@ -29,21 +29,21 @@ public class Point {
      * @return Punkt um 90° rotiert
      */
     public Point rotate() {
-        return new Point(-y,x);
+        return new Point(-y,x, isOpen);
     }
 
     public Point mirrorX() {
-        return new Point(x, -y);
+        return new Point(x, -y, isOpen);
     }
 
     public Point mirrorY() {
-        return new Point(-x, y);
+        return new Point(-x, y, isOpen);
     }
 
     @Override
     public boolean equals(Object o) {
         if (!(o instanceof Point point)) return false;
-        return x == point.x && y == point.y;
+        return x == point.x && y == point.y && isOpen == point.isOpen;
     }
 
     @Override
@@ -53,7 +53,7 @@ public class Point {
 
     @Override
     public String toString() {
-        return "(" + x + "," + y + ")";
+        return "(" + x + "," + y + "," + (isOpen ? "o" : "c") + ")";
     }
 
     public boolean isWithinBounds(int width, int height) {
