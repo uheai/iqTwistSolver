@@ -8,10 +8,12 @@ public class Tile {
 
     private Collection<Point> relativePoints;
     private Color color;
+    public final int size;
 
     public Tile(Collection<Point> relativePoints, Color color) {
         this.relativePoints = relativePoints;
         this.color = color;
+        this.size = relativePoints.size();
     }
 
     public Tile makeConcrete(Point base) {

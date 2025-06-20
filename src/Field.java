@@ -18,7 +18,7 @@ public class Field {
     }
 
     public boolean isAllowed(Color color) {
-        return condition == Color.NONE || condition == color;
+        return (condition == Color.NONE || condition == color) && /*noch kein anderes Teil*/ this.color == Color.NONE;
     }
 
     public void setCondition(Color color) {
@@ -35,5 +35,9 @@ public class Field {
 
     public void reset() {
         this.color = Color.NONE;
+    }
+
+    public boolean hasTile() {
+        return this.color != Color.NONE;
     }
 }
