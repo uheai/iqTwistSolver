@@ -29,7 +29,7 @@ public class Board {
     }
 
     public void addCondition(int x, int y, Color color) {
-        field[x][y].setColor(color);
+        field[x][y].setCondition(color);
         conditions.add(field[x][y]);
         conditionsColors.add(color);
     }

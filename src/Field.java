@@ -22,7 +22,7 @@ public class Field {
     }
 
     public void setCondition(Color color) {
-        this.condition = condition;
+        this.condition = color;
     }
 
     public Color getCondition() {
