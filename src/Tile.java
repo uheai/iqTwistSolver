@@ -6,18 +6,18 @@ import java.util.stream.Collectors;
 
 public class Tile {
 
-    private Collection<Point> relativePoints;
+    private Collection<TilePart> tileParts;
     private Color color;
     public final int size;
 
-    public Tile(Collection<Point> relativePoints, Color color) {
-        this.relativePoints = relativePoints;
+    public Tile(Collection<TilePart> tileParts, Color color) {
+        this.tileParts = tileParts;
         this.color = color;
-        this.size = relativePoints.size();
+        this.size = tileParts.size();
     }
 
     public Tile makeConcrete(Point base) {
-        Collection<Point> points = relativePoints.stream().map(p -> new Point(base, p.x, p.y)).collect(Collectors.toSet());
+        Collection<TilePart> points = tileParts.stream().map(tp -> tp.makeConcrete(base)).collect(Collectors.toSet());
         return new Tile(points, color);
     }
 
@@ -31,7 +31,6 @@ public class Tile {
             variations.add(ref);
         }
 
-        //TODO: Koordinaten müssen nach Spiegelung noch verschoben werden bzw. Spiegelung um Mittelpunkt des Teils nicht Achse
 
         //Berechne alle Spiegelungen an der X-Achse
         Collection<Tile> mirrorX = variations.stream().map(Tile::mirrorX).collect(Collectors.toSet());
@@ -45,25 +44,25 @@ public class Tile {
     }
 
     public Tile rotate() {
-        return transformTile(Point::rotate);
+        return transformTile(TilePart::rotate);
     }
 
 
     public Tile mirrorX() {
-        return transformTile(Point::mirrorX);
+        return transformTile(TilePart::mirrorX);
     }
 
     public Tile mirrorY() {
-        return transformTile(Point::mirrorY);
+        return transformTile(TilePart::mirrorY);
     }
 
-    private Tile transformTile(Function<Point, Point> pointTransformation) {
-        Collection<Point> transformedPoints = new HashSet<>();
-        for (Point point : relativePoints) {
-            transformedPoints.add(pointTransformation.apply(point));
+    private Tile transformTile(Function<TilePart, TilePart> pointTransformation) {
+        Collection<TilePart> transformedParts = new HashSet<>();
+        for (TilePart part : tileParts) {
+            transformedParts.add(pointTransformation.apply(part));
         }
 
-        return new Tile(transformedPoints, color);
+        return new Tile(transformedParts, color);
     }
 
 
@@ -71,8 +70,8 @@ public class Tile {
     public String toString() {
         StringBuilder builder = new StringBuilder();
         builder.append("[ ");
-        for (Point point : relativePoints) {
-            builder.append(point.toString());
+        for (TilePart part : tileParts) {
+            builder.append(part.toString());
             builder.append(",");
         }
         //lösche letztes Komma
@@ -85,16 +84,16 @@ public class Tile {
     @Override
     public boolean equals(Object o) {
         if (!(o instanceof Tile tile)) return false;
-        return relativePoints.equals(tile.relativePoints);
+        return tileParts.equals(tile.tileParts);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(relativePoints);
+        return Objects.hashCode(tileParts);
     }
 
-    public Collection<Point> getPoints() {
-        return relativePoints;
+    public Collection<TilePart> getTileParts() {
+        return tileParts;
     }
 
     public Color getColor() {

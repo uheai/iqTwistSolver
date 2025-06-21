@@ -36,12 +36,14 @@ public class Board {
 
     public boolean isPlacable(Tile tile) {
 
-        for (Point point : tile.getPoints()) {
+        for (TilePart part : tile.getTileParts()) {
+            Point point = part.getPoint();
+
             if (!point.isWithinBounds(width, height)) {
                 return false;
             }
 
-            if (!field[point.x][point.y].isAllowed(tile.getColor())) {
+            if (!field[point.x][point.y].isAllowed(part, tile.getColor())) {
                 return false;
             }
 
@@ -89,13 +91,15 @@ public class Board {
      * @param tile
      */
     public void place(Tile tile) {
-        for (Point p : tile.getPoints()) {
-            field[p.x][p.y].setColor(tile.getColor());
+        for (TilePart part : tile.getTileParts()) {
+            Point p = part.getPoint();
+            field[p.x][p.y].place(part, tile.getColor());
         }
     }
 
     public void unplace(Tile tile) {
-        for (Point p : tile.getPoints()) {
+        for (TilePart part : tile.getTileParts()) {
+            Point p = part.getPoint();
             field[p.x][p.y].reset();
         }
     }

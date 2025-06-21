@@ -5,108 +5,108 @@ public class TileCreator {
 
     public static Collection<Tile> getAllTiles() {
         Collection<Tile> tiles = new HashSet<>();
-//        tiles.add(blueLongTile());
-//        tiles.add(greenCorner());
-//        tiles.add(strangeYellowTile());
-//        tiles.add(yellowSmall());
-//        tiles.add(greenT());
-//        tiles.add(blueBlock());
-//        tiles.add(redL());
-//        tiles.add(redZ());
-        tiles.add(dummy());
+        tiles.add(blueLongTile());
+        tiles.add(greenCorner());
+        tiles.add(strangeYellowTile());
+        tiles.add(yellowSmall());
+        tiles.add(greenT());
+        tiles.add(blueBlock());
+        tiles.add(redL());
+        tiles.add(redZ());
+//        tiles.add(dummy());
 
         return tiles;
     }
 
     public static Tile dummy() {
-        Collection<Point> points = new HashSet<>();
-        points.add(new Point(0, 0, false));
-        points.add(new Point(0, 1, true));
+        Collection<TilePart> TileParts = new HashSet<>();
+        TileParts.add(new TilePart(0, 0, false));
+        TileParts.add(new TilePart(0, 1, true));
 
-        return new Tile(points, Color.BLUE);
+        return new Tile(TileParts, Color.BLUE);
     }
 
     public static Tile blueLongTile() {
-        Collection<Point> points = new HashSet<>();
-        points.add(new Point(0, 0, false));
-        points.add(new Point(0, 1, true));
-        points.add(new Point(0, 2, false));
-        points.add(new Point(0, 3, false));
+        Collection<TilePart> TileParts = new HashSet<>();
+        TileParts.add(new TilePart(0, 0, false));
+        TileParts.add(new TilePart(0, 1, true));
+        TileParts.add(new TilePart(0, 2, false));
+        TileParts.add(new TilePart(0, 3, false));
 
-        return new Tile(points, Color.BLUE);
+        return new Tile(TileParts, Color.BLUE);
     }
 
     public static Tile greenCorner() {
-        Collection<Point> points = new HashSet<>();
-        points.add(new Point(0, 0, true));
-        points.add(new Point(1, 0, true));
-        points.add(new Point(1, -1, false));
+        Collection<TilePart> TileParts = new HashSet<>();
+        TileParts.add(new TilePart(0, 0, true));
+        TileParts.add(new TilePart(1, 0, true));
+        TileParts.add(new TilePart(1, -1, false));
 
-        return new Tile(points, Color.GREEN);
+        return new Tile(TileParts, Color.GREEN);
     }
 
     public static Tile strangeYellowTile() {
-        Collection<Point> points = new HashSet<>();
-        points.add(new Point(0, 0, true));
-        points.add(new Point(1, 0, false));
-        points.add(new Point(1, -1, false));
-        points.add(new Point(1, 1, true));
-        points.add(new Point(2, 1, true));
+        Collection<TilePart> TileParts = new HashSet<>();
+        TileParts.add(new TilePart(0, 0, true));
+        TileParts.add(new TilePart(1, 0, false));
+        TileParts.add(new TilePart(1, -1, false));
+        TileParts.add(new TilePart(1, 1, true));
+        TileParts.add(new TilePart(2, 1, true));
 
-        return new Tile(points, Color.YELLOW);
+        return new Tile(TileParts, Color.YELLOW);
 
     }
 
     public static Tile yellowSmall() {
-        Collection<Point> points = new HashSet<>();
-        points.add(new Point(0, 0, true));
-        points.add(new Point(1, 0, false));
-        points.add(new Point(2, 0, false));
+        Collection<TilePart> TileParts = new HashSet<>();
+        TileParts.add(new TilePart(0, 0, true));
+        TileParts.add(new TilePart(1, 0, false));
+        TileParts.add(new TilePart(2, 0, false));
 
-        return new Tile(points, Color.YELLOW);
+        return new Tile(TileParts, Color.YELLOW);
     }
 
     public static Tile greenT() {
-        Collection<Point> points = new HashSet<>();
-        points.add(new Point(0, 0, false));
-        points.add(new Point(1, 0, false));
-        points.add(new Point(2, 0, true));
-        points.add(new Point(1, -1, true));
+        Collection<TilePart> TileParts = new HashSet<>();
+        TileParts.add(new TilePart(0, 0, false));
+        TileParts.add(new TilePart(1, 0, false));
+        TileParts.add(new TilePart(2, 0, true));
+        TileParts.add(new TilePart(1, -1, true));
 
-        return new Tile(points, Color.GREEN);
+        return new Tile(TileParts, Color.GREEN);
     }
 
     public static Tile blueBlock() {
-        Collection<Point> points = new HashSet<>();
-        points.add(new Point(0, 0, false));
-        points.add(new Point(1, 0, false));
-        points.add(new Point(2, 0, false));
-        points.add(new Point(1, -1, true));
-        points.add(new Point(2, -1, true));
+        Collection<TilePart> TileParts = new HashSet<>();
+        TileParts.add(new TilePart(0, 0, false));
+        TileParts.add(new TilePart(1, 0, false));
+        TileParts.add(new TilePart(2, 0, false));
+        TileParts.add(new TilePart(1, -1, true));
+        TileParts.add(new TilePart(2, -1, true));
 
-        return new Tile(points, Color.BLUE);
+        return new Tile(TileParts, Color.BLUE);
 
     }
 
     public static Tile redL() {
-        Collection<Point> points = new HashSet<>();
-        points.add(new Point(0, 0, true));
-        points.add(new Point(1, 0, false));
-        points.add(new Point(2, 0, true));
-        points.add(new Point(2, 1, false));
+        Collection<TilePart> TileParts = new HashSet<>();
+        TileParts.add(new TilePart(0, 0, true));
+        TileParts.add(new TilePart(1, 0, false));
+        TileParts.add(new TilePart(2, 0, true));
+        TileParts.add(new TilePart(2, 1, false));
 
-        return new Tile(points, Color.RED);
+        return new Tile(TileParts, Color.RED);
 
     }
 
     public static Tile redZ() {
-        Collection<Point> points = new HashSet<>();
-        points.add(new Point(0, 0, false));
-        points.add(new Point(1, 0, true));
-        points.add(new Point(1, -1, false));
-        points.add(new Point(2, -1, false));
+        Collection<TilePart> TileParts = new HashSet<>();
+        TileParts.add(new TilePart(0, 0, false));
+        TileParts.add(new TilePart(1, 0, true));
+        TileParts.add(new TilePart(1, -1, false));
+        TileParts.add(new TilePart(2, -1, false));
 
-        return new Tile(points, Color.RED);
+        return new Tile(TileParts, Color.RED);
 
     }
 }

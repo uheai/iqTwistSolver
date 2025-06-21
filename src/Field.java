@@ -1,6 +1,7 @@
 public class Field {
 
     private final Point point;
+    private  TilePart part;
     private Color color;
     private Color condition;
 
@@ -17,14 +18,14 @@ public class Field {
         this.color = color;
     }
 
-    public boolean isAllowed(Color color) {
+    public boolean isAllowed(TilePart part, Color color) {
         //Prüfe, ob Farbe Bedingung einhält (falls vorhanden) und der Punkt offen ist
-        if (condition != Color.NONE && condition != color && !point.isOpen()) {
+        if (condition != Color.NONE && (condition != color || !part.hasHole())) {
             return false;
         }
 
         //Legen nur erlaubt, falls noch kein anderes Teil hier liegt
-        if (this.color == Color.NONE) {
+        if (this.color != Color.NONE) {
             return false;
         }
 
@@ -45,9 +46,19 @@ public class Field {
 
     public void reset() {
         this.color = Color.NONE;
+        this.part = null;
     }
 
     public boolean hasTile() {
         return this.color != Color.NONE;
+    }
+
+    public void place(TilePart part, Color color) {
+        if (condition != Color.NONE && !part.hasHole()) {
+            throw new ConditionFailedException("Tilepart has no whole and cannot be placed at (" + point.x + "," + point.y + ")");
+        }
+
+        this.color = color;
+        this.part = part;
     }
 }
